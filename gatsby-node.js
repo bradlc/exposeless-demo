@@ -25,7 +25,7 @@ function processDatum(datum) {
     id: `editable-${datum.id}`,
     name: datum.name,
     page: datum.page,
-    repeater: datum.repeater || '',
+    repeater: datum.repeater || -1,
     value: datum.value,
     parent: null,
     children: [],

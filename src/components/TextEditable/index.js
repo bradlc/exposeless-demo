@@ -7,7 +7,7 @@ class TextEditable extends Component {
   }
 
   render() {
-    const repeater = this.props.repeater || "";
+    const repeater = this.props.repeater || -1;
 
     const value = this.context.editables.filter(x => {
       return (
@@ -43,7 +43,7 @@ class TextEditable extends Component {
             value: e.target.textContent
           };
 
-          if (this.props.repeater) {
+          if (this.props.repeater && this.props.repeater !== -1) {
             data.repeater = this.props.repeater;
           }
 
