@@ -5,7 +5,7 @@ install: npm install
 script: gatsby build
 deploy:
   provider: script
-  script: npm install -g scottyjs && echo $"[default]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >~/.aws/credentials && scotty --source ./public --bucket exposeless --spa --nocdn --update --website
+  script: npm install -g scottyjs && mkdir ~/.aws && echo $"[default]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >~/.aws/credentials && scotty --source ./public --bucket exposeless --spa --nocdn --update --website
   skip_cleanup: true
 cache:
   directories:
