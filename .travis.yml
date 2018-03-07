@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "6.10.2"
+install: npm install
+script: gatsby build
+deploy:
+  provider: script
+  script: npm install -g scottyjs && scotty --source ./public --bucket exposeless --spa --nocdn --update --website
+  skip_cleanup: true
+cache:
+  directories:
+    - "node_modules"

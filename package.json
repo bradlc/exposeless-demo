@@ -24,6 +24,7 @@
   "devDependencies": {
     "pify": "^3.0.0",
     "prettier": "^1.11.1",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "scottyjs": "^1.10.0"
   }
 }
