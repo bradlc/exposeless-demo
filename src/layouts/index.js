@@ -33,7 +33,7 @@ class TemplateWrapper extends React.Component {
         </div>
         <button
           onClick={() => {
-            window.fetch("https://expose-api-cmuwmyxmpd.now.sh/publish");
+            window.fetch("https://expose-api-xvswukbzwf.now.sh/publish");
           }}
           style={{ position: "absolute", bottom: "50px", right: "50px" }}
         >
