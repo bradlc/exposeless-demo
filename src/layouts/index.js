@@ -7,7 +7,7 @@ import "./index.css";
 
 class TemplateWrapper extends React.Component {
   getChildContext() {
-    return { editables: this.props.data.allEditable.edges }
+    return { editables: this.props.data.allEditable.edges };
     // return { editables: this.props.data}
   }
   render() {
@@ -31,6 +31,14 @@ class TemplateWrapper extends React.Component {
         >
           {this.props.children()}
         </div>
+        <button
+          onClick={() => {
+            window.fetch("https://expose-api-vgqjikjmny.now.sh/publish");
+          }}
+          style={{ position: "absolute", bottom: "50px", right: "50px" }}
+        >
+          Publish
+        </button>
       </div>
     );
   }
@@ -42,7 +50,7 @@ TemplateWrapper.propTypes = {
 
 TemplateWrapper.childContextTypes = {
   editables: PropTypes.array
-}
+};
 
 export const query = graphql`
   query EditablesQuery {

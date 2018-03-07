@@ -30,7 +30,7 @@ class TextEditable extends Component {
       <div
         contentEditable
         onBlur={e => {
-          window.fetch("https://expose-api-wrvpvxlcdy.now.sh/update", {
+          window.fetch("https://expose-api-vgqjikjmny.now.sh/update", {
             method: "post",
             headers: {
               "Content-Type": "application/json"
