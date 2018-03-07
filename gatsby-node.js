@@ -11,7 +11,7 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
   const { createNode } = boundActionCreators;
   // Create nodes here, generally by downloading data
   // from a remote API.
-  const [, body] = await request("https://expose-api-fiqkejrnyw.now.sh/read");
+  const [, body] = await request("https://expose-api-pjywjkjllq.now.sh/read");
 
   // Process data into nodes.
   JSON.parse(body).forEach(datum => createNode(processDatum(datum)));
@@ -25,6 +25,7 @@ function processDatum(datum) {
     id: `editable-${datum.id}`,
     name: datum.name,
     page: datum.page,
+    repeater: datum.repeater || '',
     value: datum.value,
     parent: null,
     children: [],

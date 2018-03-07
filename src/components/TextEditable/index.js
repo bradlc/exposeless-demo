@@ -7,9 +7,13 @@ class TextEditable extends Component {
   }
 
   render() {
+    const repeater = this.props.repeater || "";
+
     const value = this.context.editables.filter(x => {
       return (
-        x.node.page === this.context.pageName && x.node.name === this.props.name
+        x.node.page === this.context.pageName &&
+        x.node.name === this.props.name &&
+        x.node.repeater === repeater
       );
     })[0];
 
@@ -17,29 +21,38 @@ class TextEditable extends Component {
       typeof window !== "undefined" &&
       window.editables &&
       window.editables.filter(
-        x => x.name === this.props.name && x.page === this.context.pageName
+        x =>
+          x.name === this.props.name &&
+          x.page === this.context.pageName &&
+          x.repeater === repeater
       );
 
     if (adminOverride && adminOverride.length > 0) {
       adminOverride = adminOverride[0].value;
     } else {
-      adminOverride = null
+      adminOverride = null;
     }
 
     return (
       <div
         contentEditable
         onBlur={e => {
-          window.fetch("https://expose-api-vgqjikjmny.now.sh/update", {
+          const data = {
+            page: this.context.pageName,
+            name: this.props.name,
+            value: e.target.textContent
+          };
+
+          if (this.props.repeater) {
+            data.repeater = this.props.repeater;
+          }
+
+          window.fetch("https://expose-api-pjywjkjllq.now.sh/update", {
             method: "post",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-              page: this.context.pageName,
-              name: this.props.name,
-              value: e.target.textContent
-            })
+            body: JSON.stringify(data)
           });
         }}
       >

@@ -1,9 +1,18 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import Page from '../components/Page'
-import TextEditable from '../components/TextEditable'
+import React from "react";
+import Link from "gatsby-link";
+import Page from "../components/Page";
+import TextEditable from "../components/TextEditable";
+import Repeatable from "../components/Repeatable";
 
-const IndexPage = ({data}) => (
+const variants = {
+  text: ({ n, total, TextEditable }) => (
+    <div>
+      lorem ipsum {n} / {total} - <TextEditable name="testrepeater" />
+    </div>
+  )
+};
+
+const IndexPage = ({ data }) => (
   <div>
     {/* <h1>{(typeof window !== 'undefined' && window.foo) || data.site.siteMetadata.title}</h1> */}
     <p>Welcome to your new Gatsby site.</p>
@@ -12,8 +21,9 @@ const IndexPage = ({data}) => (
     <Page name="home">
       <TextEditable name="title" />
       <TextEditable name="lol" />
+      <Repeatable name="body" variants={variants} />
     </Page>
   </div>
-)
+);
 
-export default IndexPage
+export default IndexPage;
