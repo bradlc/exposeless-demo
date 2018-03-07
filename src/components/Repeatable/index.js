@@ -34,7 +34,7 @@ class Repeatable extends React.Component {
             <C
               n={index + 1}
               total={sections.length}
-              TextEditable={withProps({ repeater: this.props.name })(TextEditable)}
+              TextEditable={withProps({ repeater: section.id })(TextEditable)}
               key={section.id}
             />
           );
