@@ -47,7 +47,7 @@ class TextEditable extends Component {
             data.repeater = this.props.repeater;
           }
 
-          window.fetch("https://expose-api-pjywjkjllq.now.sh/update", {
+          window.fetch("https://expose-api-cmuwmyxmpd.now.sh/update", {
             method: "post",
             headers: {
               "Content-Type": "application/json"
