@@ -1,15 +1,19 @@
 var s3 = require('s3')
+var AWS = require('aws-sdk'); // https://www.npmjs.com/package/aws-sdk
+
+// use newest sdk to avoid: https://github.com/andrewrk/node-s3-client/issues/69
+var awsS3Client = new AWS.S3({
+  region: 'eu-west-2'
+});
 
 var client = s3.createClient(
   {
-    maxAsyncS3: 10, // this is the default
-    s3RetryCount: 5, // this is the default
-    s3RetryDelay: 2000, // this is the default
-    multipartUploadThreshold: 20971520, // this is the default (20 MB)
-    multipartUploadSize: 5572864,
-    s3Options: {
-      region: 'eu-west-2'
-    }
+    maxAsyncS3: 20,     // this is the default
+  s3RetryCount: 3,    // this is the default
+  s3RetryDelay: 1000, // this is the default
+  multipartUploadThreshold: 20971520, // this is the default (20 MB)
+  multipartUploadSize: 15728640, // this is the default (15 MB)
+    s3Client: awsS3Client
   })
 
 var params = {
@@ -18,6 +22,7 @@ var params = {
   // that have no corresponding local file.
 
   s3Params: {
+    Prefix: '',
     Bucket: 'exposeless',
     ACL: 'public-read'
   }
@@ -37,4 +42,5 @@ uploader.on('progress', function () {
 })
 uploader.on('end', function () {
   console.log('uploaded')
+  process.exit(0);
 })
